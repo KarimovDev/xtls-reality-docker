@@ -2,9 +2,34 @@
   "log": {
     "loglevel": "error"
   },
+  "dns": {
+    "servers": [
+      "https+local://cloudflare-dns.com/dns-query",
+      "1.1.1.1",
+      "1.0.0.1",
+      "8.8.8.8",
+      "8.8.4.4",
+      "localhost"
+    ]
+  },
   "routing": {
-    "rules": [],
-    "domainStrategy": "AsIs"
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "inboundTag": ["api"],
+        "outboundTag": "api",
+        "type": "field"
+      },
+      {
+        "type": "field",
+        "ip": ["geoip:ru", "geoip:private"],
+        "outboundTag": "blocked"
+      },
+      {
+        "protocol": ["bittorrent"],
+        "type": "field",
+        "outboundTag": "blocked"
+      }
   },
   "inbounds": [
     {

@@ -1,12 +1,12 @@
 FROM alpine:latest
 LABEL mantainer="myelectronix"
 
-ARG XRAY_CORE_VERSION=v1.8.4
+ARG XRAY_CORE_VERSION=v1.8.23
 ENV SNI=www.samsung.com
-ENV SHORT_ID=aabbccdd
+ENV SHORT_ID=47a28d43
 
 RUN set -e &&\
-    apk add --no-cache bash libqrencode curl &&\
+    apk add --no-cache bash libqrencode libqrencode-tools curl &&\
     wget https://github.com/XTLS/Xray-core/releases/download/${XRAY_CORE_VERSION}/Xray-linux-64.zip &&\
     mkdir /opt/xray &&\
     mkdir /opt/xray/config &&\

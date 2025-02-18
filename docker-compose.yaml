@@ -1,14 +1,17 @@
 version: '3.8'
 services:
   xtls-reality:
-    image:  myelectronix/xtls-reality:latest
+    build:
+        context: .
+        dockerfile: Dockerfile
+    image:  xtls-reality
     environment:
-      - SNI=www.samsung.com
-      - SHORT_ID=aabbccdd
+      - SNI=bladebla.cz
+      - SHORT_ID=47a28d43
     container_name: xtls-reality
     restart: always
     ports:
-      - "443:443"
+      - "127.0.0.1:8443:443"
     volumes:
       - xtls-reality-volume:/opt/xray/config
 volumes:
